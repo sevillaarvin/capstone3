@@ -15,3 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource("yeet", "PostController");
+Route::resource("greet", "CommentController");
+Route::resource("meet", "FriendController");
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
