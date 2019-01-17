@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', "PostController@index");
 
 Route::resource("yeet", "PostController");
 Route::resource("greet", "CommentController");

@@ -1,0 +1,33 @@
+.side-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 9;
+  
+  &--closed {
+    display: none;
+  }
+  
+  &--open {
+    display: block;
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(#000, .5);
+    z-index: -1;
+  }
+
+  &__content {
+    background-color: rgba(#fff, 1);
+    width: 83%;
+    height: 100%;
+  }
+}
+

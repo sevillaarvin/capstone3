@@ -14,7 +14,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::orderBy("created_at", "desc")->get();
+        return view("landing", compact("posts"));
     }
 
     /**
@@ -35,7 +36,15 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'content' => 'required|string',
+        ];
+
+        $this->validate($request, $rules);
+
+        return Post::create([
+            "content" => $request->content,
+        ]);
     }
 
     /**
