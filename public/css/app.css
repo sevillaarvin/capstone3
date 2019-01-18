@@ -8362,7 +8362,22 @@ button.close {
 
 .side-nav__content {
   background-color: white;
-  width: 83%;
   height: 100%;
+}
+
+.side-nav__avatar {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+.login__username-input {
+  border: none;
+  border-bottom: 0.5px solid rgba(153, 153, 153, 0.3);
+}
+
+.login__password-input {
+  border: none;
+  border-bottom: 0.5px solid rgba(153, 153, 153, 0.3);
 }
 
