@@ -12,15 +12,17 @@ class UserController extends Controller
         return view("user.profile", compact("user"));
     }
 
-    public function showYeets ($username) {
-        return view("user.yeets");
+    public function showPosts ($username) {
+        $posts = User::where("username", $username)->first()
+            ->posts()->orderBy("created_at", "desc")->get();
+        return view("user.posts", compact("posts"));
     }
 
-    public function showGreets ($username) {
-        return view("user.greets");
+    public function showComments ($username) {
+        return view("user.comments", compact("comments"));
     }
 
-    public function showMeets ($username) {
-        return view("user.meets");
+    public function showFriends ($username) {
+        return view("user.friends", compact("friends"));
     }
 }

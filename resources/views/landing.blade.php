@@ -103,7 +103,7 @@
         @endauth
         <div class="row">
             @foreach($posts as $post)
-                <div class="col-12 my-3">
+                <div class="col-12 my-3" data-toggle="modal" data-target="#modal-{{ $post->id }}">
                     <div class="row">
                         <div class="col-3">
                             {{ 'AVATAR' }}
@@ -180,6 +180,7 @@
     const createPost = async (content) => {
         try {
             await axios.post("{{ route("yeet.store") }}", {
+                title: content,
                 content,
             })
             return

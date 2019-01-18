@@ -2,8 +2,9 @@
 
 namespace Yeet\Http\Controllers;
 
-use Yeet\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Yeet\Post;
 
 class PostController extends Controller
 {
@@ -37,13 +38,16 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $rules = [
+            'title' => 'required|string|max:255',
             'content' => 'required|string',
         ];
 
         $this->validate($request, $rules);
 
         return Post::create([
+            "title" => $request->title,
             "content" => $request->content,
+            "user_id" => Auth::user()->id,
         ]);
     }
 

@@ -18,9 +18,9 @@ Route::resource("greet", "CommentController");
 Route::resource("meet", "FriendController");
 
 Route::get("{username}/profile", "UserController@showProfile");
-Route::get("{username}/yeets", "UserController@showYeets");
-Route::get("{username}/greets", "UserController@showGreets");
-Route::get("{username}/meets", "UserController@showMeets");
+Route::get("{username}/yeets", "UserController@showPosts");
+Route::get("{username}/greets", "UserController@showComments");
+Route::get("{username}/meets", "UserController@showFriends");
 
 //Route::middleware("auth")->group(function () {
 //});
