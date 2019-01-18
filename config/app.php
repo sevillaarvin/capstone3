@@ -171,11 +171,11 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        Yeet\Providers\AppServiceProvider::class,
+        Yeet\Providers\AuthServiceProvider::class,
+        // Yeet\Providers\BroadcastServiceProvider::class,
+        Yeet\Providers\EventServiceProvider::class,
+        Yeet\Providers\RouteServiceProvider::class,
 
     ],
 

@@ -8363,11 +8363,12 @@ button.close {
 .side-nav__content {
   background-color: white;
   height: 100%;
+  padding: 20px;
 }
 
 .side-nav__avatar {
-  height: 50px;
-  width: 50px;
+  height: 100px;
+  width: 100px;
   border-radius: 50%;
 }
 

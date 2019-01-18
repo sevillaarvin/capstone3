@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="css/slideout.css">
+    <link rel="stylesheet" href="{{ asset("css/app.css") }}">
+    <link rel="stylesheet" href="{{ asset("css/slideout.css") }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
           integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <title>Yeet</title>
@@ -19,18 +19,20 @@
         <li class="nav-item">
             <img src="http://i.pravatar.cc/300" alt="Avatar" class="side-nav__avatar">
         </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link">Profile</a>
-        </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link">Yeets</a>
-        </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link">Greets</a>
-        </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link">Meets</a>
-        </li>
+        @auth
+            <li class="nav-item">
+                <a href="/{{ Auth::user()->username }}/profile" class="nav-link">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a href="/{{ Auth::user()->username }}/yeets" class="nav-link">Yeets</a>
+            </li>
+            <li class="nav-item">
+                <a href="/{{ Auth::user()->username }}/greets" class="nav-link">Greets</a>
+            </li>
+            <li class="nav-item">
+                <a href="/{{ Auth::user()->username }}/meets" class="nav-link">Meets</a>
+            </li>
+        @endauth
     </ul>
 </nav>
 <main id="panel" class="panel">

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Yeet\Http\Controllers;
 
-use App\Friend;
+use Yeet\Friend;
 use Illuminate\Http\Request;
 
 class FriendController extends Controller
@@ -41,7 +41,7 @@ class FriendController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Friend  $friend
+     * @param  \Yeet\Friend  $friend
      * @return \Illuminate\Http\Response
      */
     public function show(Friend $friend)
@@ -52,7 +52,7 @@ class FriendController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Friend  $friend
+     * @param  \Yeet\Friend  $friend
      * @return \Illuminate\Http\Response
      */
     public function edit(Friend $friend)
@@ -64,7 +64,7 @@ class FriendController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Friend  $friend
+     * @param  \Yeet\Friend  $friend
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Friend $friend)
@@ -75,7 +75,7 @@ class FriendController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Friend  $friend
+     * @param  \Yeet\Friend  $friend
      * @return \Illuminate\Http\Response
      */
     public function destroy(Friend $friend)

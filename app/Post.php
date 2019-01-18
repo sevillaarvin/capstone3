@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Yeet;
 
 use Illuminate\Database\Eloquent\Model;
 

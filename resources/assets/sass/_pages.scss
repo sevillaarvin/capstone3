@@ -28,11 +28,12 @@
     background-color: rgba(#fff, 1);
     //width: 83%;
     height: 100%;
+    padding: 20px;
   }
 
   &__avatar {
-    height: 50px;
-    width: 50px;
+    height: 100px;
+    width: 100px;
     border-radius: 50%;
   }
 }
