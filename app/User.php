@@ -27,8 +27,20 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function posts() {
+    public function posts()
+    {
         return $this->hasMany("Yeet\Post");
     }
 
+    public function comments()
+    {
+        return $this->hasMany("Yeet\Comment");
+    }
+
+    public function friends()
+    {
+        return $this->belongsToMany("Yeet\User", "friends", "user_id", "friend_id")
+            ->withPivot("accepted")
+            ->withTimestamps();
+    }
 }

@@ -164,5 +164,6 @@
             fixed.style.transition = '';
         })
 </script>
+@yield("scripts")
 </body>
 </html>

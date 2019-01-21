@@ -19,10 +19,14 @@ class UserController extends Controller
     }
 
     public function showComments ($username) {
+        $comments = User::where("username", $username)->first()
+            ->comments()->orderBy("created_at", "desc")->get();
         return view("user.comments", compact("comments"));
     }
 
     public function showFriends ($username) {
+        $friends = User::where("username", $username)->first()
+            ->friends()->orderBy("created_at", "desc")->get();
         return view("user.friends", compact("friends"));
     }
 }

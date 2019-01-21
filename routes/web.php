@@ -14,8 +14,12 @@
 Route::get('/', "PostController@index");
 
 Route::resource("yeet", "PostController");
+Route::post("yeet/{id}/like", "PostController@like")->name("yeet.like");
+Route::post("yeet/{id}/comment", "PostController@comment")->name("yeet.comment");
+
 Route::resource("greet", "CommentController");
 Route::resource("meet", "FriendController");
+Route::resource("neet", "LikeController");
 
 Route::get("{username}/profile", "UserController@showProfile");
 Route::get("{username}/yeets", "UserController@showPosts");

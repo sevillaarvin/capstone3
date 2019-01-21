@@ -15,4 +15,8 @@ class Post extends Model
     public function comments () {
         return $this->morphMany("Yeet\Comment", "commentable");
     }
+
+    public function likes () {
+        return $this->morphToMany("Yeet\User", "likeable", "likes");
+    }
 }

@@ -4,6 +4,7 @@ namespace Yeet\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Yeet\Comment;
 use Yeet\Post;
 
 class PostController extends Controller
@@ -96,5 +97,25 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //
+    }
+
+    public function like (Request $request, $id) {
+        if (Auth::check()) {
+            $post = Post::findOrFail($id);
+            $post->likes()->sync([
+                Auth::user()->id => ["liked" => $request->liked]
+            ]);
+        }
+    }
+
+    public function comment (Request $request, $id) {
+        if (Auth::check()) {
+            $post = Post::findOrFail($id);
+            $post->comments()->save(new Comment([
+                "comment" => $request->comment,
+                "user_id" => Auth::user()->id,
+            ]));
+        }
+        return back();
     }
 }

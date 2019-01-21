@@ -12,4 +12,5 @@ let mix = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/app.js', 'public/js')
+    .babel("resources/assets/js/post_detail.js", "public/js/post_detail.js")
    .sass('resources/assets/sass/app.scss', 'public/css');
