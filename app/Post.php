@@ -11,4 +11,8 @@ class Post extends Model
         "content",
         "user_id",
     ];
+
+    public function comments () {
+        return $this->morphMany("Yeet\Comment", "commentable");
+    }
 }

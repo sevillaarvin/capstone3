@@ -13,6 +13,7 @@
 </head>
 <body>
 <style>
+
 </style>
 <nav id="menu" class="side-nav side-nav--closed">
     <ul class="side-nav__content nav flex-column text-center p-5">
@@ -103,18 +104,20 @@
         @endauth
         <div class="row">
             @foreach($posts as $post)
-                <div class="col-12 my-3" data-toggle="modal" data-target="#modal-{{ $post->id }}">
-                    <div class="row">
-                        <div class="col-3">
-                            {{ 'AVATAR' }}
+                <div class="col-12 my-3 post__data" data-toggle="modal" data-target="#modal-{{ $post->id }}">
+                    <a href="{{ route("yeet.show", $post->id) }}" class="post__data-link">
+                        <div class="row">
+                            <div class="col-3">
+                                {{ 'AVATAR' }}
+                            </div>
+                            <div class="col-6">
+                                {{ $post->content }}
+                            </div>
+                            <div class="col-3">
+                                {{ $post->created_at->diffForHumans() }}
+                            </div>
                         </div>
-                        <div class="col-6">
-                            {{ $post->content }}
-                        </div>
-                        <div class="col-3">
-                            {{ $post->created_at->diffForHumans() }}
-                        </div>
-                    </div>
+                    </a>
                 </div>
             @endforeach
         </div>
