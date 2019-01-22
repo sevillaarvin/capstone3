@@ -118,4 +118,11 @@ class PostController extends Controller
         }
         return back();
     }
+
+    public function showComment($postId, $commentId)
+    {
+        $post = Post::findOrFail($postId);
+        $maincomment = Comment::findOrFail($commentId);
+        return view("post.post_comment", compact("post", "maincomment"));
+    }
 }

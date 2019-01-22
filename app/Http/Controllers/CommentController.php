@@ -4,6 +4,7 @@ namespace Yeet\Http\Controllers;
 
 use Yeet\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -81,5 +82,26 @@ class CommentController extends Controller
     public function destroy(Comment $comment)
     {
         //
+    }
+
+    public function comment (Request $request, $id) {
+        if (Auth::check()) {
+            $comment = Comment::findOrFail($id);
+            $comment->comments()->save(new Comment([
+                "comment" => $request->comment,
+                "user_id" => Auth::user()->id,
+            ]));
+        }
+        return back();
+    }
+
+    public function like (Request $request, $id) {
+        if (Auth::check()) {
+            $comment = Comment::findOrFail($id);
+            $comment->likes()->sync([
+                Auth::user()->id => ["liked" => filter_var($request->liked, FILTER_VALIDATE_BOOLEAN)]
+            ]);
+        }
+        return back();
     }
 }

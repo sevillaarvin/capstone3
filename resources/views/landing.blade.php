@@ -15,27 +15,7 @@
 <style>
 
 </style>
-<nav id="menu" class="side-nav side-nav--closed">
-    <ul class="side-nav__content nav flex-column text-center p-5">
-        <li class="nav-item">
-            <img src="http://i.pravatar.cc/300" alt="Avatar" class="side-nav__avatar">
-        </li>
-        @auth
-            <li class="nav-item">
-                <a href="/{{ Auth::user()->username }}/profile" class="nav-link">Profile</a>
-            </li>
-            <li class="nav-item">
-                <a href="/{{ Auth::user()->username }}/yeets" class="nav-link">Yeets</a>
-            </li>
-            <li class="nav-item">
-                <a href="/{{ Auth::user()->username }}/greets" class="nav-link">Greets</a>
-            </li>
-            <li class="nav-item">
-                <a href="/{{ Auth::user()->username }}/meets" class="nav-link">Meets</a>
-            </li>
-        @endauth
-    </ul>
-</nav>
+@include("_slideout")
 <main id="panel" class="panel">
     <div class="container">
         <div class="row">

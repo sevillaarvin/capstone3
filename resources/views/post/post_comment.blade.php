@@ -1,6 +1,6 @@
 @extends("layouts.user")
 
-@section("title", "Yeet")
+@section("title", "Yeet - Comments")
 @section("content")
     <div class="container">
         <div class="row">
@@ -49,27 +49,25 @@
         @endauth
         <div class="row">
             <div class="col">
-                @foreach($post->comments as $comment)
-                    @include("post._comment", [ "comment" => $comment ])
-                    <div class="row ml-3">
-                        <div class="col">
+                @include("post._comment", [ "comment" => $maincomment ])
+                <div class="row ml-3">
+                    <div class="col">
+                        @foreach($maincomment->comments as $comment)
+                            @include("post._comment", [ "comment" => $comment ])
                             @foreach($comment->comments as $comment_comment)
-                                @include("post._comment", [ "comment" => $comment_comment ])
                                 <div class="row ml-3">
                                     <div class="col">
-                                        @foreach($comment_comment->comments as $comment_comment_comment)
-                                            @include("post._comment", [ "comment" => $comment_comment_comment ])
-                                            @if($comment_comment_comment->comments)
-                                                <a href="{{ route("yeet.comment.comment", [ $post->id, $comment_comment_comment->id ]) }}">More
-                                                    Comments..</a>
-                                            @endif
-                                        @endforeach
+                                        @include("post._comment", [ "comment" => $comment_comment ])
+                                        @if($comment_comment->comments->count())
+                                            <a href="{{ route("yeet.comment.comment", [ $post->id, $comment_comment->id ]) }}">More
+                                                Comments..</a>
+                                        @endif
                                     </div>
                                 </div>
                             @endforeach
-                        </div>
+                        @endforeach
                     </div>
-                @endforeach
+                </div>
             </div>
         </div>
     </div>

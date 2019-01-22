@@ -20,6 +20,6 @@ class Comment extends Model
     }
 
     public function likes () {
-        return $this->morphMany("Yeet\Like", "likeable");
+        return $this->morphToMany("Yeet\User", "likeable", "likes");
     }
 }
