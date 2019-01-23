@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="{{ asset("css/app.css") }}">
     <link rel="stylesheet" href="{{ asset("css/slideout.css") }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
           integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <title>Yeet</title>
@@ -72,7 +73,13 @@
         @auth
             <div class="row">
                 <div class="col">
-                    <form id="post-form" name="post-form" class="post__form">
+                    <form id="post-form" name="post-form" class="post__form" enctype="multipart/form-data" action="{{ route("yeet.store") }}" method="post">
+                        {{ csrf_field() }}
+                        <div class="post__upload-container">
+                            <i class="fas fa-camera" onclick="document.getElementById('post-upload').click()"></i>
+                            <input id="post-upload" name="image" type="file" class="post__upload">
+                        </div>
+                        <input id="post-title" name="title" type="text" class="form-control" placeholder="Yeet!!">
                         <textarea id="post-content" name="content" cols="30" rows="5" placeholder="Yeet!!!"
                                   class="post__content form-control mb-1"></textarea>
                         <button id="post-submit" class="post__submit btn btn-primary form-control" type="submit">
@@ -88,10 +95,19 @@
                     <a href="{{ route("yeet.show", $post->id) }}" class="post__data-link">
                         <div class="row">
                             <div class="col-3">
-                                {{ 'AVATAR' }}
+                                @if($post->image)
+                                    <img src="{{ $post->image }}" alt="Post-image" class="post__data-image">
+                                @else
+                                    AVATAR
+                                @endif
                             </div>
                             <div class="col-6">
-                                {{ $post->content }}
+                                <h3>
+                                    {{ $post->title }}
+                                </h3>
+                                <p>
+                                    {{ $post->content }}
+                                </p>
                             </div>
                             <div class="col-3">
                                 {{ $post->created_at->diffForHumans() }}
@@ -149,16 +165,16 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
             @auth
-    const postForm = document.querySelector("#post-form")
-    postForm.addEventListener("submit", (e) => {
-        e.preventDefault()
-
-        const postContent = e.target["post-content"]
-        const content = postContent.value
-        createPost(content)
-            .then(() => postContent.value = "")
-            .catch(handleErrors)
-    })
+    // const postForm = document.querySelector("#post-form")
+    // postForm.addEventListener("submit", (e) => {
+    //     e.preventDefault()
+    //
+    //     const postContent = e.target["post-content"]
+    //     const content = postContent.value
+    //     createPost(content)
+    //         .then(() => postContent.value = "")
+    //         .catch(handleErrors)
+    // })
 
     const createPost = async (content) => {
         try {

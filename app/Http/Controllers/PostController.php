@@ -41,15 +41,31 @@ class PostController extends Controller
         $rules = [
             'title' => 'required|string|max:255',
             'content' => 'required|string',
+            'image' => "image|mimes:jpeg,png,jpg,gif,svg|max:2048",
         ];
 
         $this->validate($request, $rules);
 
-        return Post::create([
-            "title" => $request->title,
-            "content" => $request->content,
-            "user_id" => Auth::user()->id,
-        ]);
+        if($request->file("image") != null) {
+            $image = $request->file("image");
+            $image_name = time().".".$image->getClientOriginalExtension();
+            $destination = "images/";
+            $image->move($destination, $image_name);
+            Post::create([
+                "title" => $request->title,
+                "content" => $request->content,
+                "user_id" => Auth::user()->id,
+                "image" => $destination.$image_name,
+            ]);
+        } else {
+            Post::create([
+                "title" => $request->title,
+                "content" => $request->content,
+                "user_id" => Auth::user()->id,
+            ]);
+        }
+
+        return back();
     }
 
     /**

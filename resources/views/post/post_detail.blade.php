@@ -23,14 +23,25 @@
                 </div>
                 <div class="row">
                     <div class="col d-flex justify-content-between">
-                        <span>
-                            <i class="far fa-thumbs-up" onclick="likePost({{ $post->id }}, true)"></i>
-                            {{ $post->likes()->where("liked", true)->count() }}
-                        </span>
-                        <span>
-                            <i class="far fa-thumbs-down" onclick="likePost({{ $post->id }}, false)"></i>
-                            {{ $post->likes()->where("liked", false)->count() }}
-                        </span>
+                        @guest
+                            <a href="{{ route("login") }}" class="post__detail-link">
+                                <i class="far fa-thumbs-up" onclick="likePost({{ $post->id }}, true)"></i>
+                                {{ $post->likes()->where("liked", true)->count() }}
+                            </a>
+                            <a href="{{ route("login") }}" class="post__detail-link">
+                                <i class="far fa-thumbs-down" onclick="likePost({{ $post->id }}, false)"></i>
+                                {{ $post->likes()->where("liked", false)->count() }}
+                            </a>
+                        @else
+                            <span>
+                                <i class="far fa-thumbs-up" onclick="likePost({{ $post->id }}, true)"></i>
+                                {{ $post->likes()->where("liked", true)->count() }}
+                            </span>
+                            <span>
+                                <i class="far fa-thumbs-down" onclick="likePost({{ $post->id }}, false)"></i>
+                                {{ $post->likes()->where("liked", false)->count() }}
+                            </span>
+                        @endguest
                     </div>
                 </div>
             </div>

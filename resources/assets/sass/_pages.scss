@@ -57,7 +57,57 @@
 .post {
   &__data {
     &-link {
-      // text-decoration: none;
+      &:link,
+      &:visited {
+        text-decoration: none;
+        color: #666;
+      }
+
+      &:hover,
+      &:active {
+        text-decoration: none;
+        color: #666;
+      }
     }
+
+    &-image {
+      width: 100%;
+    }
+  }
+
+  &__form {
+    position: relative;
+  }
+
+  &__upload-container {
+    position: absolute;
+    bottom: 30px;
+    right: 5px;
+  }
+
+  &__upload {
+    display: none!important;
+  }
+
+  &__detail {
+    &-link {
+      &:link,
+      &:visited {
+        text-decoration: none;
+        color: #636b6f;
+      }
+
+      &:hover,
+      &:active {
+        text-decoration: none;
+        color: #636b6f;
+      }
+    }
+  }
+}
+
+.profile {
+  &__upload {
+    display: none!important;
   }
 }

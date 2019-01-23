@@ -8382,3 +8382,49 @@ button.close {
   border-bottom: 0.5px solid rgba(153, 153, 153, 0.3);
 }
 
+.post__data-link:link,
+.post__data-link:visited {
+  text-decoration: none;
+  color: #666;
+}
+
+.post__data-link:hover,
+.post__data-link:active {
+  text-decoration: none;
+  color: #666;
+}
+
+.post__data-image {
+  width: 100%;
+}
+
+.post__form {
+  position: relative;
+}
+
+.post__upload-container {
+  position: absolute;
+  bottom: 30px;
+  right: 5px;
+}
+
+.post__upload {
+  display: none !important;
+}
+
+.post__detail-link:link,
+.post__detail-link:visited {
+  text-decoration: none;
+  color: #636b6f;
+}
+
+.post__detail-link:hover,
+.post__detail-link:active {
+  text-decoration: none;
+  color: #636b6f;
+}
+
+.profile__upload {
+  display: none !important;
+}
+

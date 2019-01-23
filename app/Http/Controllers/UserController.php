@@ -4,12 +4,51 @@ namespace Yeet\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Yeet\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     public function showProfile ($username) {
         $user = User::where("username", $username)->first();
         return view("user.profile", compact("user"));
+    }
+
+    public function updateProfile (Request $request, $username) {
+        $user = User::where("username", $username)->first();
+        if(Auth::user()->id == $user->id) {
+            $rules = [
+                'name' => 'required|string|max:255',
+                'username' => 'required|string|max:255|unique:users,username,'.$user->id,
+                'email' => 'required|string|email|max:255|unique:users,email,'.$user->id,
+                'password' => 'string|min:6',
+                'newpassword' => 'string|min:6|confirmed',
+                'image' => "image|mimes:jpeg,png,jpg,gif,svg|max:2048",
+            ];
+
+            // TODO: Handle new password
+
+            $this->validate($request, $rules);
+
+            if ($request->name != $user->name) {
+                $user->name = $request->name;
+            }
+            if ($request->username != $user->username) {
+                $user->username = $request->username;
+            }
+            if ($request->email != $user->email) {
+                $user->email = $request->email;
+            }
+
+            if ($request->hasFile("avatar")) {
+                $image = $request->file("avatar");
+                $image_name = time().".".$image->getClientOriginalExtension();
+                $destination = "images/";
+                $image->move($destination, $image_name);
+                $user->avatar = $destination.$image_name;
+            }
+            $user->save();
+        }
+        return redirect(route("user.profile", $user->username));
     }
 
     public function showPosts ($username) {

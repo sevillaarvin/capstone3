@@ -2,6 +2,7 @@
     <ul class="side-nav__content nav flex-column text-center p-5">
         <li class="nav-item">
             <img src="http://i.pravatar.cc/300" alt="Avatar" class="side-nav__avatar">
+            <i class="fas fa-user-circle"></i>
         </li>
         @auth
             <li class="nav-item">

@@ -25,10 +25,12 @@ Route::post("greet/{id}/comment", "CommentController@comment")->name("greet.comm
 Route::resource("meet", "FriendController");
 Route::resource("neet", "LikeController");
 
-Route::get("{username}/profile", "UserController@showProfile");
-Route::get("{username}/yeets", "UserController@showPosts");
-Route::get("{username}/greets", "UserController@showComments");
-Route::get("{username}/meets", "UserController@showFriends");
+Route::get("{username}/profile", "UserController@showProfile")->name("user.profile");
+Route::patch("{username}/profile", "UserController@updateProfile")->name("user.update");
+
+Route::get("{username}/yeets", "UserController@showPosts")->name("user.yeets");
+Route::get("{username}/greets", "UserController@showComments")->name("user.greets");
+Route::get("{username}/meets", "UserController@showFriends")->name("user.meets");
 
 //Route::middleware("auth")->group(function () {
 //});
