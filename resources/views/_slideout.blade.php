@@ -1,8 +1,15 @@
 <nav id="menu" class="side-nav side-nav--closed">
     <ul class="side-nav__content nav flex-column text-center p-5">
         <li class="nav-item">
-            <img src="http://i.pravatar.cc/300" alt="Avatar" class="side-nav__avatar">
-            <i class="fas fa-user-circle"></i>
+            @auth
+                @if(Auth::user()->avatar)
+                    <img src="{{ Auth::user()->avatar }}" alt="Avatar" class="side-nav__avatar">
+                @else
+                    <i class="fas fa-user-circle fa-7x"></i>
+                @endif
+            @else
+                <i class="fas fa-user-circle fa-7x"></i>
+            @endauth
         </li>
         @auth
             <li class="nav-item">

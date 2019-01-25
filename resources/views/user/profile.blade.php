@@ -11,7 +11,8 @@
                 @auth
                     @if(Auth::user()->id == $user->id)
                         <form action="{{ route("user.update", $user->username) }}" method="post"
-                              enctype="multipart/form-data">
+                              enctype="multipart/form-data"
+                              class="mb-5">
                             {{ csrf_field() }}
                             {{ method_field("patch") }}
                             <div class="profile__avatar-container text-center">
@@ -34,8 +35,15 @@
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input id="email" type="email" name="email" value="{{ $user->email }}" class="form-control profile__email">
+                                <input id="email" type="email" name="email" value="{{ $user->email }}"
+                                       class="form-control profile__email">
                             </div>
+                            <button class="btn btn-primary form-control" type="submit">Update</button>
+                        </form>
+                        <form action="{{ route("user.change-password", $user->username) }}" method="post">
+                            {{ csrf_field() }}
+                            {{ method_field("patch") }}
+                            {{ Session::get("status") }}
                             <div class="profile__password-container">
                                 <div class="form-group">
                                     <label for="password">Current Password</label>
@@ -47,10 +55,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="newpassword_confirmation">New Password Confirmation</label>
-                                    <input id="newpassword_confirmation" type="password" name="newpassword_confirmation" class="form-control">
+                                    <input id="newpassword_confirmation" type="password" name="newpassword_confirmation"
+                                           class="form-control">
                                 </div>
                             </div>
-                            <button class="btn btn-primary form-control" type="submit">Update</button>
+                            <button class="btn btn-info form-control" type="submit">Change Password</button>
                         </form>
                     @else
                         <div class="profile__avatar text-center">

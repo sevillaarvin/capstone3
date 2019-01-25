@@ -7,7 +7,8 @@
 
     <link rel="stylesheet" href="{{ asset("css/app.css") }}">
     <link rel="stylesheet" href="{{ asset("css/slideout.css") }}">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
           integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <title>Yeet</title>
@@ -27,18 +28,17 @@
                     <div class="lead">Repeat!</div>
                 </div>
                 <nav class="header__navbar navbar navbar-expand-lg navbar-light bg-light">
-                    <span class="mr-auto toggle-button">MENU TOGGLE</span>
+                    <span class="mr-auto toggle-button">YEET!</span>
                     <span class="ml-auto">
-                        AVATAR
-                        <a href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
-                            Logout
-                        </a>
-
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            {{ csrf_field() }}
-                        </form>
+                        @auth
+                            @if(Auth::user()->avatar)
+                                <img src="{{ Auth::user()->avatar }}" alt="">
+                            @else
+                                <i class="fas fa-user-circle fa-3x"></i>
+                            @endif
+                        @else
+                            <i class="fas fa-user-circle fa-3x"></i>
+                        @endauth
                     </span>
                 </nav>
                 <div class="header__content text-center">
@@ -73,7 +73,8 @@
         @auth
             <div class="row">
                 <div class="col">
-                    <form id="post-form" name="post-form" class="post__form" enctype="multipart/form-data" action="{{ route("yeet.store") }}" method="post">
+                    <form id="post-form" name="post-form" class="post__form" enctype="multipart/form-data"
+                          action="{{ route("yeet.store") }}" method="post">
                         {{ csrf_field() }}
                         <div class="post__upload-container">
                             <i class="fas fa-camera" onclick="document.getElementById('post-upload').click()"></i>
@@ -94,11 +95,19 @@
                 <div class="col-12 my-3 post__data" data-toggle="modal" data-target="#modal-{{ $post->id }}">
                     <a href="{{ route("yeet.show", $post->id) }}" class="post__data-link">
                         <div class="row">
-                            <div class="col-3">
+                            <div class="col-3 text-center">
                                 @if($post->image)
                                     <img src="{{ $post->image }}" alt="Post-image" class="post__data-image">
                                 @else
-                                    AVATAR
+                                    @auth
+                                        @if(Auth::user()->avatar)
+                                            <img src="{{ Auth::user()->avatar }}" alt="Avatar" class="side-nav__avatar">
+                                        @else
+                                            <i class="fas fa-user-circle fa-5x"></i>
+                                        @endif
+                                    @else
+                                        <i class="fas fa-user-circle fa-5x"></i>
+                                    @endauth
                                 @endif
                             </div>
                             <div class="col-6">
@@ -164,7 +173,7 @@
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
-            @auth
+    @auth
     // const postForm = document.querySelector("#post-form")
     // postForm.addEventListener("submit", (e) => {
     //     e.preventDefault()

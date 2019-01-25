@@ -22,8 +22,22 @@ class FriendsTableSeeder extends Seeder
                 "updated_at" => Carbon::now(),
             ],
             [
+                "user_id" => 3,
+                "friend_id" => 2,
+                "accepted" => true,
+                "created_at" => Carbon::now(),
+                "updated_at" => Carbon::now(),
+            ],
+            [
                 "user_id" => 2,
                 "friend_id" => 4,
+                "accepted" => false,
+                "created_at" => Carbon::now(),
+                "updated_at" => Carbon::now(),
+            ],
+            [
+                "user_id" => 4,
+                "friend_id" => 2,
                 "accepted" => false,
                 "created_at" => Carbon::now(),
                 "updated_at" => Carbon::now(),

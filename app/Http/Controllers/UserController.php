@@ -3,6 +3,7 @@
 namespace Yeet\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Yeet\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,12 +21,8 @@ class UserController extends Controller
                 'name' => 'required|string|max:255',
                 'username' => 'required|string|max:255|unique:users,username,'.$user->id,
                 'email' => 'required|string|email|max:255|unique:users,email,'.$user->id,
-                'password' => 'string|min:6',
-                'newpassword' => 'string|min:6|confirmed',
                 'image' => "image|mimes:jpeg,png,jpg,gif,svg|max:2048",
             ];
-
-            // TODO: Handle new password
 
             $this->validate($request, $rules);
 
@@ -49,6 +46,26 @@ class UserController extends Controller
             $user->save();
         }
         return redirect(route("user.profile", $user->username));
+    }
+
+    public function changePassword (Request $request, $username) {
+        $user = User::where("username", $username)->first();
+        if(Auth::user()->id == $user->id) {
+            $rules = [
+                'password' => 'string|min:6',
+                'newpassword' => 'string|min:6|confirmed',
+            ];
+
+            $this->validate($request, $rules);
+
+            if(Hash::check($request->password, $user->password)) {
+                $user->password = bcrypt($request->newpassword);
+                $user->save();
+            } else {
+                $request->session()->flash("status", "Password is not valid");
+            }
+        }
+        return back();
     }
 
     public function showPosts ($username) {

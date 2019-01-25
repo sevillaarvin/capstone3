@@ -8428,3 +8428,8 @@ button.close {
   display: none !important;
 }
 
+.profile__avatar {
+  width: 100px;
+  border-radius: 50%;
+}
+

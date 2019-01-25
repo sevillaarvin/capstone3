@@ -27,6 +27,7 @@ Route::resource("neet", "LikeController");
 
 Route::get("{username}/profile", "UserController@showProfile")->name("user.profile");
 Route::patch("{username}/profile", "UserController@updateProfile")->name("user.update");
+Route::patch("{username}/change-password", "UserController@changePassword")->name("user.change-password");
 
 Route::get("{username}/yeets", "UserController@showPosts")->name("user.yeets");
 Route::get("{username}/greets", "UserController@showComments")->name("user.greets");

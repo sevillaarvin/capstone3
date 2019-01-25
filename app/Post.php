@@ -13,6 +13,10 @@ class Post extends Model
         "image",
     ];
 
+    public function owner() {
+        return $this->belongsTo("Yeet\User", "user_id");
+    }
+
     public function comments () {
         return $this->morphMany("Yeet\Comment", "commentable");
     }

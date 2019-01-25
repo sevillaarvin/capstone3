@@ -110,4 +110,9 @@
   &__upload {
     display: none!important;
   }
+
+  &__avatar {
+    width: 100px;
+    border-radius: 50%;
+  }
 }

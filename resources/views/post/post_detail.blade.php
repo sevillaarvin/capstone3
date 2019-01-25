@@ -7,9 +7,26 @@
             <div class="col">
                 <div class="row">
                     <div class="col-3">
-                        <img src="/{{ $post->image }}" alt="post-image">
+                        @if($post->image)
+                            <img src="/{{ $post->image }}" alt="post-image" class="img-fluid">
+                        @else
+                            @auth
+                                @if(Auth::user()->avatar)
+                                    <img src="/{{ Auth::user()->avatar }}" alt="post-image" class="img-fluid">
+                                @else
+                                    <i class="fas fa-user-circle fa-7x"></i>
+                                @endif
+                            @else
+                                <i class="fas fa-user-circle fa-7x"></i>
+                            @endauth
+                        @endif
                     </div>
                     <div class="col-6">
+                        <h4>
+                            <a href="{{ route("user.profile", $post->owner->username) }}">
+                                {{ $post->owner->name }}
+                            </a>
+                        </h4>
                         <h2>{{ $post->title }}</h2>
                     </div>
                     <div class="col-3">
