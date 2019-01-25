@@ -13,6 +13,9 @@
         </li>
         @auth
             <li class="nav-item">
+                <a href="/{{ Auth::user()->username }}/profile" class="nav-link">{{ Auth::user()->name }}</a>
+            </li>
+            <li class="nav-item">
                 <a href="/{{ Auth::user()->username }}/profile" class="nav-link">Profile</a>
             </li>
             <li class="nav-item">
@@ -31,6 +34,9 @@
                 </a>
             </li>
         @else
+            <li class="nav-item">
+                <a href="{{ route('login') }}" class="nav-link">Anonymous</a>
+            </li>
             <li class="nav-item">
                 <a href="{{ route('login') }}" class="nav-link">Login</a>
             </li>

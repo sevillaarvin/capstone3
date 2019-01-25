@@ -69,11 +69,14 @@
                                 <i class="fas fa-user-circle fa-7x"></i>
                             @endif
                         </div>
-                        <div class="text-center">
-                            <a href="#" class="btn btn-primary">
-                                Add Friend
-                            </a>
-                        </div>
+                        @if(!Auth::user()->friends()->whereId($user->id))
+                            <div class="text-center">
+                                <form action="{{ route("meet.store") }}" method="post">
+                                    {{ csrf_field() }}
+                                    <button class="btn btn-primary" type="submit">Add Friend</button>
+                                </form>
+                            </div>
+                        @endif
                         <p>Name: {{ $user->name }}</p>
                         <p>Username: {{ $user->username }}</p>
                         <p>Email: {{ $user->email }}</p>
