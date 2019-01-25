@@ -29,17 +29,18 @@
                 </div>
                 <nav class="header__navbar navbar navbar-expand-lg navbar-light bg-light">
                     <span class="mr-auto toggle-button">YEET!</span>
-                    <span class="ml-auto">
+                    <a class="ml-auto">
                         @auth
                             @if(Auth::user()->avatar)
-                                <img src="{{ Auth::user()->avatar }}" alt="">
+                                <img src="/{{ Auth::user()->avatar }}" alt="Avatar"
+                                     class="img-fluid header__navbar-avatar">
                             @else
                                 <i class="fas fa-user-circle fa-3x"></i>
                             @endif
                         @else
                             <i class="fas fa-user-circle fa-3x"></i>
                         @endauth
-                    </span>
+                    </a>
                 </nav>
                 <div class="header__content text-center">
                     @guest
@@ -77,7 +78,7 @@
                           action="{{ route("yeet.store") }}" method="post">
                         {{ csrf_field() }}
                         <div class="post__upload-container">
-                            <i class="fas fa-camera" onclick="document.getElementById('post-upload').click()"></i>
+                            <i class="fas fa-camera fa-2x" onclick="document.getElementById('post-upload').click()"></i>
                             <input id="post-upload" name="image" type="file" class="post__upload">
                         </div>
                         <input id="post-title" name="title" type="text" class="form-control" placeholder="Yeet!!">
@@ -97,11 +98,12 @@
                         <div class="row">
                             <div class="col-3 text-center">
                                 @if($post->image)
-                                    <img src="{{ $post->image }}" alt="Post-image" class="post__data-image">
+                                    <img src="/{{ $post->image }}" alt="Post-image" class="post__data-image">
                                 @else
                                     @auth
-                                        @if(Auth::user()->avatar)
-                                            <img src="{{ Auth::user()->avatar }}" alt="Avatar" class="side-nav__avatar">
+                                        @if($post->owner->avatar)
+                                            <img src="/{{ $post->owner->avatar }}" alt="Avatar"
+                                                 class="side-nav__avatar">
                                         @else
                                             <i class="fas fa-user-circle fa-5x"></i>
                                         @endif

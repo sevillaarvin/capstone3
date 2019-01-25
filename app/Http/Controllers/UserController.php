@@ -21,7 +21,7 @@ class UserController extends Controller
                 'name' => 'required|string|max:255',
                 'username' => 'required|string|max:255|unique:users,username,'.$user->id,
                 'email' => 'required|string|email|max:255|unique:users,email,'.$user->id,
-                'image' => "image|mimes:jpeg,png,jpg,gif,svg|max:2048",
+                'avatar' => "image|mimes:jpeg,png,jpg,gif,svg|max:2048",
             ];
 
             $this->validate($request, $rules);

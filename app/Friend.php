@@ -2,9 +2,9 @@
 
 namespace Yeet;
 
-use Illuminate\Database\Eloquent\Relations\Pivot;
+use Illuminate\Database\Eloquent\Model;
 
-class Friend extends Pivot
+class Friend extends Model
 {
     //
 }

@@ -8,16 +8,17 @@
                 <div class="row">
                     <div class="col-3">
                         @if($post->image)
-                            <img src="/{{ $post->image }}" alt="post-image" class="img-fluid">
+                            <img src="/{{ $post->image }}" alt="post-image" class="img-fluid post__detail-image">
                         @else
                             @auth
-                                @if(Auth::user()->avatar)
-                                    <img src="/{{ Auth::user()->avatar }}" alt="post-image" class="img-fluid">
+                                @if($post->owner->avatar)
+                                    <img src="/{{ $post->owner->avatar }}" alt="post-image"
+                                         class="img-fluid post__detail-avatar">
                                 @else
-                                    <i class="fas fa-user-circle fa-7x"></i>
+                                    <i class="fas fa-user-circle fa-5x"></i>
                                 @endif
                             @else
-                                <i class="fas fa-user-circle fa-7x"></i>
+                                <i class="fas fa-user-circle fa-5x"></i>
                             @endauth
                         @endif
                     </div>

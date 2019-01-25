@@ -23,6 +23,7 @@ Route::post("greet/{id}/like", "CommentController@like")->name("greet.like");
 Route::post("greet/{id}/comment", "CommentController@comment")->name("greet.comment");
 
 Route::resource("meet", "FriendController");
+
 Route::resource("neet", "LikeController");
 
 Route::get("{username}/profile", "UserController@showProfile")->name("user.profile");

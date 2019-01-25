@@ -17,7 +17,7 @@
                             {{ method_field("patch") }}
                             <div class="profile__avatar-container text-center">
                                 @if($user->avatar)
-                                    <img src="{{ $user->avatar }}" alt="Avatar" class="profile__avatar">
+                                    <img src="/{{ $user->avatar }}" alt="Avatar" class="profile__avatar">
                                 @else
                                     <i class="fas fa-user-circle fa-7x profile__avatar"></i>
                                 @endif
@@ -62,21 +62,26 @@
                             <button class="btn btn-info form-control" type="submit">Change Password</button>
                         </form>
                     @else
-                        <div class="profile__avatar text-center">
+                        <div class="profile__avatar-container text-center">
                             @if($user->avatar)
-                                <img src="{{ $user->avatar }}" alt="Avatar">
+                                <img src="/{{ $user->avatar }}" alt="Avatar" class="profile__avatar">
                             @else
                                 <i class="fas fa-user-circle fa-7x"></i>
                             @endif
+                        </div>
+                        <div class="text-center">
+                            <a href="#" class="btn btn-primary">
+                                Add Friend
+                            </a>
                         </div>
                         <p>Name: {{ $user->name }}</p>
                         <p>Username: {{ $user->username }}</p>
                         <p>Email: {{ $user->email }}</p>
                     @endif
                 @else
-                    <div class="profile__avatar text-center">
+                    <div class="profile__avatar-container text-center">
                         @if($user->avatar)
-                            <img src="{{ $user->avatar }}" alt="Avatar">
+                            <img src="/{{ $user->avatar }}" alt="Avatar" class="profile__avatar">
                         @else
                             <i class="fas fa-user-circle fa-7x"></i>
                         @endif

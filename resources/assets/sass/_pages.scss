@@ -1,3 +1,12 @@
+.header {
+  &__navbar {
+    &-avatar {
+      width: 50px;
+      border-radius: 50%;
+    }
+  }
+}
+
 .side-nav {
   position: fixed;
   top: 0;
@@ -32,8 +41,8 @@
   }
 
   &__avatar {
-    height: 100px;
-    width: 100px;
+    height: 50px;
+    width: 50px;
     border-radius: 50%;
   }
 }
@@ -102,6 +111,15 @@
         text-decoration: none;
         color: #636b6f;
       }
+    }
+
+    &-image {
+      width: 100px;
+    }
+
+    &-avatar {
+      width: 100px;
+      border-radius: 50%;
     }
   }
 }

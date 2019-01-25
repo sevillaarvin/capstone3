@@ -3,7 +3,7 @@
         <li class="nav-item">
             @auth
                 @if(Auth::user()->avatar)
-                    <img src="{{ Auth::user()->avatar }}" alt="Avatar" class="side-nav__avatar">
+                    <img src="/{{ Auth::user()->avatar }}" alt="Avatar" class="side-nav__avatar">
                 @else
                     <i class="fas fa-user-circle fa-7x"></i>
                 @endif

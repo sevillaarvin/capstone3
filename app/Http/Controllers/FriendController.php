@@ -4,6 +4,7 @@ namespace Yeet\Http\Controllers;
 
 use Yeet\Friend;
 use Illuminate\Http\Request;
+use Yeet\User;
 
 class FriendController extends Controller
 {
@@ -35,7 +36,12 @@ class FriendController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(Auth::check()) {
+            $friend = User::findOrFail($request->friend_id);
+            Auth::user()->friends()->sync([$request->friend_id => ["accepted" => false]]);
+            $friend->friends()->sync([Auth::user()->id => ["accepted" => false]]);
+        }
+        return back();
     }
 
     /**
